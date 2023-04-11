@@ -12,6 +12,30 @@
       .container {
         max-width: 1140px;
       }
+      .repo-card {
+        transition: all 0.3s ease;
+      }
+
+      .repo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .repo-card .detail {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        transition: opacity 0.3s ease;
+      }
+
+      .repo-card:hover .detail {
+        display: block;
+      }
     </style>
   </head>
   <body>
@@ -69,13 +93,22 @@
             );
             const repoTitle = document.createElement("h3");
             repoTitle.classList.add("text-lg", "font-bold", "mb-2");
-            repoTitle.textContent = repo.name;
+            const repoLink = document.createElement("a");
+            repoLink.href = repo.html_url; // Link ke halaman GitHub
+            repoLink.textContent = repo.name;
+            repoTitle.appendChild(repoLink);
             const repoDesc = document.createElement("p");
             repoDesc.classList.add("text-gray-600");
             repoDesc.textContent =
               repo.description || "No description available.";
             repoItem.appendChild(repoTitle);
             repoItem.appendChild(repoDesc);
+
+            // Menambahkan event listener pada card repositori
+            repoItem.addEventListener("click", () => {
+              window.open(repo.html_url, "_blank");
+            });
+
             repoList.appendChild(repoItem);
           });
         })
