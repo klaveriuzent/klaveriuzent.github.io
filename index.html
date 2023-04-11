@@ -41,33 +41,8 @@
 
     <section class="py-10 bg-gray-100">
       <div class="container mx-auto">
-        <h2 class="text-3xl font-bold mb-4">Our Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="bg-white p-4 shadow-md rounded-md">
-            <h3 class="text-lg font-bold mb-2">Service 1</h3>
-            <p class="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              pharetra, lorem vel rutrum commodo, nulla sapien interdum metus,
-              eu aliquam magna tellus vel ex.
-            </p>
-          </div>
-          <div class="bg-white p-4 shadow-md rounded-md">
-            <h3 class="text-lg font-bold mb-2">Service 2</h3>
-            <p class="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              pharetra, lorem vel rutrum commodo, nulla sapien interdum metus,
-              eu aliquam magna tellus vel ex.
-            </p>
-          </div>
-          <div class="bg-white p-4 shadow-md rounded-md">
-            <h3 class="text-lg font-bold mb-2">Service 3</h3>
-            <p class="text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              pharetra, lorem vel rutrum commodo, nulla sapien interdum metus,
-              eu aliquam magna tellus vel ex.
-            </p>
-          </div>
-        </div>
+        <h2 class="text-3xl font-bold mb-4">Top Repositories on GitHub</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="repo-list"></div>
       </div>
     </section>
 
@@ -77,6 +52,36 @@
       </div>
     </footer>
 
+    <script>
+      const apiUrl =
+        "https://api.github.com/users/klaveriuzent/repos?sort=stars&per_page=6";
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          const repoList = document.getElementById("repo-list");
+          data.forEach((repo) => {
+            const repoItem = document.createElement("div");
+            repoItem.classList.add(
+              "bg-white",
+              "p-4",
+              "shadow-md",
+              "rounded-md"
+            );
+            const repoTitle = document.createElement("h3");
+            repoTitle.classList.add("text-lg", "font-bold", "mb-2");
+            repoTitle.textContent = repo.name;
+            const repoDesc = document.createElement("p");
+            repoDesc.classList.add("text-gray-600");
+            repoDesc.textContent =
+              repo.description || "No description available.";
+            repoItem.appendChild(repoTitle);
+            repoItem.appendChild(repoDesc);
+            repoList.appendChild(repoItem);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs"></script>
   </body>
 </html>
