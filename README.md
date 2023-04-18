@@ -1,3 +1,5 @@
+<!-- ![alt text](path/to/image.jpg) -->
+
 # klaveriuzent.github.io
 
 https://klaveriuzent.github.io/
