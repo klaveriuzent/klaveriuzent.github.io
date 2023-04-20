@@ -102,7 +102,7 @@
 		</section>
 
 		<!-- Three -->
-		<section id="three">
+		<!-- <section id="three">
 			<h2>Get In Touch</h2>
 			<p>
 				Accumsan pellentesque commodo blandit enim arcu non at amet id arcu
@@ -153,10 +153,10 @@
 					</ul>
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 		<!-- Four -->
-		<section id="four">
+		<!-- <section id="four">
 			<h2>Elements</h2>
 
 			<section>
@@ -512,23 +512,23 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					ac pellentesque praesent.</p>
 			</section>
 
-		</section>
+		</section> -->
 
 		<!-- Footer -->
 		<footer id="footer">
 			<div class="inner">
 				<ul class="icons">
 					<li>
-						<a href="#" class="icon brands fa-github"><span class="label">Github</span></a>
+						<a href="https://github.com/klaveriuzent" class="icon brands fa-github"><span class="label">Github</span></a>
 					</li>
 					<li>
-						<a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a>
+						<a href="https://linkedin.com/in/jefry-chiedi" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a>
 					</li>
 					<li>
-						<a href="#" class="icon brands fa-telegram"><span class="label">Telegram</span></a>
+						<a href="https://t.me/Klaveriuzent" class="icon brands fa-telegram"><span class="label">Telegram</span></a>
 					</li>
 					<li>
-						<a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a>
+						<a href="mailto:jefrychiedi1999@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a>
 					</li>
 				</ul>
 				<ul class="copyright">
@@ -545,54 +545,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		</footer>
 
 		<!-- Scripts -->
-		<script>
-			// Mengambil data dari API GitHub
-			fetch('https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=6')
-				.then(response => response.json())
-				.then(data => {
-					// Menampilkan data dalam halaman web
-					const repoList = document.getElementById('repo-list');
-					data.forEach(repo => {
-						// Mengambil data bahasa dari API GitHub
-						fetch(repo.languages_url)
-							.then(response => response.json())
-							.then(languages => {
-								// Menampilkan data dalam halaman web
-								const article = document.createElement('article');
-								article.className = 'col-6 col-12-xsmall work-item';
-								article.innerHTML = `
-					<div class="card">
-					  <h3 class="repo-name">${repo.name}</h3>
-					  <p>
-  						License: ${repo.license ? '<img class="license-icon" style="opacity: 0.45; vertical-align: middle; margin-top: -2px" src="/assets/icon/scale_balance_icon.svg" alt="License icon">' + repo.license.name : 'No license'}
-					  </p>
-					  <p>Language: ${Object.keys(languages).join(', ')}</p>
-					  <p class="repo-atr">Description :</p>
-					  <p class="repo-description">${repo.description ? repo.description : 'No description'}</p>
-					  <div class="card-link">
-						<a href="${repo.html_url}" class="button-mod">View on GitHub</a>
-					  </div>
-					</div>
-				  `;
-								repoList.appendChild(article);
-							})
-							.catch(error => console.error(error));
-					});
-					// Menambahkan animasi ketika data berhasil dimuat
-					repoList.classList.add('fade-in');
-				})
-				.catch(error => console.error(error));
-
-			// Fungsi untuk menyalin teks ke clipboard
-			function copyToClipboard(text) {
-				const textarea = document.createElement('textarea');
-				textarea.value = text;
-				document.body.appendChild(textarea);
-				textarea.select();
-				document.execCommand('copy');
-				document.body.removeChild(textarea);
-			}
-		</script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery.poptrox.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
@@ -600,6 +552,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/visibility.js"></script>
+		<script src="assets/js/github-repos.js"></script>
 </body>
 
 </html>
