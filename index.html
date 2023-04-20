@@ -13,6 +13,7 @@
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
     <link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="assets/css/costume-style.css" />
   </head>
 
   <body class="is-preload">
@@ -527,29 +528,27 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
     <!-- Scripts -->
     <script>
-      // Mengambil data dari API GitHub
-      fetch(
-        "https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=6"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          // Menampilkan data dalam halaman web
-          const repoList = document.getElementById("repo-list");
-          data.forEach((repo) => {
-            const article = document.createElement("article");
-            article.className = "col-6 col-12-xsmall work-item";
-            article.innerHTML = `
-				<a href="${
-          repo.html_url
-        }" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>
-				<h3>${repo.name}</h3>
-				<p>${repo.description ? repo.description : "No description"}</p>
+		// Mengambil data dari API GitHub
+		fetch('https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=6')
+		  .then(response => response.json())
+		  .then(data => {
+			// Menampilkan data dalam halaman web
+			const repoList = document.getElementById('repo-list');
+			data.forEach(repo => {
+			  const article = document.createElement('article');
+			  article.className = 'col-6 col-12-xsmall work-item';
+			  article.innerHTML = `
+				<div class="card">
+				  <h3>${repo.name}</h3>
+				  <p>${repo.description ? repo.description : 'No description'}</p>
+				  <div class="card-link"><a href="${repo.html_url}" class="button">View on GitHub</a></div>
+				</div>
 			  `;
-            repoList.appendChild(article);
-          });
-        })
-        .catch((error) => console.error(error));
-    </script>
+			  repoList.appendChild(article);
+			});
+		  })
+		  .catch(error => console.error(error));
+	  </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.poptrox.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
