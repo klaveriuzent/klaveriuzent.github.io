@@ -1,3 +1,5 @@
+![Intro](./images/repository-open-graph-template.png)
+
 # Repositori Website klaveriuzent.github.io
 Ini adalah repositori untuk website klaveriuzent.github.io. Website ini dapat diakses melalui https://klaveriuzent.github.io/. Template website ini dibuat oleh html5up.net dan dikembangkan oleh @ajlkn. Template yang digunakan adalah Strata by HTML5 UP. Silakan gunakan website ini sesuai dengan lisensi yang telah ditetapkan. Terima kasih telah mengunjungi website kami!
 

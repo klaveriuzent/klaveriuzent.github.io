@@ -176,7 +176,6 @@
       </section>
 
       <!-- Four -->
-      <!--
 					<section id="four">
 						<h2>Elements</h2>
 
@@ -491,7 +490,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						</section>
 
 					</section>
-				--></div>
 
     <!-- Footer -->
     <footer id="footer">
@@ -523,6 +521,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
           <li>Base: <a href="http://html5up.net">HTML5 UP</a></li>
           <li>Edit: <a href="#">Jefry Chiedi</a></li>
         </ul>
+		<ul class="copyright">
+			<li><a href="https://www.google.co.id/maps/place/Jakarta/@-6.2293796,106.6647008,11z/data=!3m1!4b1!4m6!3m5!1s0x2e69f3e945e34b9d:0x5371bf0fdad786a2!8m2!3d-6.2087634!4d106.845599!16zL20vMDQ0cnY">Jakarta, Indonesia  |  ID</a></li>
+		  </ul>
       </div>
     </footer>
 
@@ -535,17 +536,27 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			// Menampilkan data dalam halaman web
 			const repoList = document.getElementById('repo-list');
 			data.forEach(repo => {
-			  const article = document.createElement('article');
-			  article.className = 'col-6 col-12-xsmall work-item';
-			  article.innerHTML = `
-				<div class="card">
-				  <h3>${repo.name}</h3>
-				  <p>${repo.description ? repo.description : 'No description'}</p>
-				  <div class="card-link"><a href="${repo.html_url}" class="button">View on GitHub</a></div>
-				</div>
-			  `;
-			  repoList.appendChild(article);
+			  // Mengambil data bahasa dari API GitHub
+			  fetch(repo.languages_url)
+				.then(response => response.json())
+				.then(languages => {
+				  // Menampilkan data dalam halaman web
+				  const article = document.createElement('article');
+				  article.className = 'col-6 col-12-xsmall work-item';
+				  article.innerHTML = `
+					<div class="card">
+					  <h3>${repo.name}</h3>
+					  <p>Language: ${Object.keys(languages).join(', ')}</p>
+					  <p>${repo.description ? repo.description : 'No description'}</p>
+					  <div class="card-link"><a href="${repo.html_url}" class="button">View on GitHub</a></div>
+					</div>
+				  `;
+				  repoList.appendChild(article);
+				})
+				.catch(error => console.error(error));
 			});
+			// Menambahkan animasi ketika data berhasil dimuat
+			repoList.classList.add('fade-in');
 		  })
 		  .catch(error => console.error(error));
 	  </script>
