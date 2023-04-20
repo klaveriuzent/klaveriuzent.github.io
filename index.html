@@ -14,6 +14,7 @@
     />
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
+
   <body class="is-preload">
     <!-- Header -->
     <header id="header">
@@ -55,7 +56,8 @@
       <!-- Two -->
       <section id="two">
         <h2>Recent Work</h2>
-        <div class="row">
+        <div class="row" id="repo-list"></div>
+        <!-- <div class="row">
           <article class="col-6 col-12-xsmall work-item">
             <a href="images/fulls/01.jpg" class="image fit thumb"
               ><img src="images/thumbs/01.jpg" alt=""
@@ -98,9 +100,13 @@
             <h3>Risus ornare lacinia</h3>
             <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
           </article>
-        </div>
+        </div> -->
         <ul class="actions">
-          <li><a href="#" class="button">Full Portfolio</a></li>
+          <li>
+            <a href="https://github.com/klaveriuzent" class="button"
+              >See Other Repos</a
+            >
+          </li>
         </ul>
       </section>
 
@@ -491,18 +497,18 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
       <div class="inner">
         <ul class="icons">
           <li>
-            <a href="#" class="icon brands fa-twitter"
-              ><span class="label">Twitter</span></a
-            >
-          </li>
-          <li>
             <a href="#" class="icon brands fa-github"
               ><span class="label">Github</span></a
             >
           </li>
           <li>
-            <a href="#" class="icon brands fa-dribbble"
-              ><span class="label">Dribbble</span></a
+            <a href="#" class="icon brands fa-linkedin"
+              ><span class="label">LinkedIn</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="icon brands fa-telegram"
+              ><span class="label">Telegram</span></a
             >
           </li>
           <li>
@@ -513,12 +519,37 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
         </ul>
         <ul class="copyright">
           <li>&copy; 2023</li>
-          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          <li>Base: <a href="http://html5up.net">HTML5 UP</a></li>
+          <li>Edit: <a href="#">Jefry Chiedi</a></li>
         </ul>
       </div>
     </footer>
 
     <!-- Scripts -->
+    <script>
+      // Mengambil data dari API GitHub
+      fetch(
+        "https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=6"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          // Menampilkan data dalam halaman web
+          const repoList = document.getElementById("repo-list");
+          data.forEach((repo) => {
+            const article = document.createElement("article");
+            article.className = "col-6 col-12-xsmall work-item";
+            article.innerHTML = `
+				<a href="${
+          repo.html_url
+        }" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="" /></a>
+				<h3>${repo.name}</h3>
+				<p>${repo.description ? repo.description : "No description"}</p>
+			  `;
+            repoList.appendChild(article);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.poptrox.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
