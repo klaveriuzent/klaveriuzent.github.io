@@ -536,17 +536,27 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			// Menampilkan data dalam halaman web
 			const repoList = document.getElementById('repo-list');
 			data.forEach(repo => {
-			  const article = document.createElement('article');
-			  article.className = 'col-6 col-12-xsmall work-item';
-			  article.innerHTML = `
-				<div class="card">
-				  <h3>${repo.name}</h3>
-				  <p>${repo.description ? repo.description : 'No description'}</p>
-				  <div class="card-link"><a href="${repo.html_url}" class="button">View on GitHub</a></div>
-				</div>
-			  `;
-			  repoList.appendChild(article);
+			  // Mengambil data bahasa dari API GitHub
+			  fetch(repo.languages_url)
+				.then(response => response.json())
+				.then(languages => {
+				  // Menampilkan data dalam halaman web
+				  const article = document.createElement('article');
+				  article.className = 'col-6 col-12-xsmall work-item';
+				  article.innerHTML = `
+					<div class="card">
+					  <h3>${repo.name}</h3>
+					  <p>Language: ${Object.keys(languages).join(', ')}</p>
+					  <p>${repo.description ? repo.description : 'No description'}</p>
+					  <div class="card-link"><a href="${repo.html_url}" class="button">View on GitHub</a></div>
+					</div>
+				  `;
+				  repoList.appendChild(article);
+				})
+				.catch(error => console.error(error));
 			});
+			// Menambahkan animasi ketika data berhasil dimuat
+			repoList.classList.add('fade-in');
 		  })
 		  .catch(error => console.error(error));
 	  </script>
