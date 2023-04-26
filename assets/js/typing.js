@@ -1,6 +1,6 @@
 const typingElement = document.getElementById('typing');
 const blinkElement = document.getElementById('blink');
-const texts = ['Computer Science Graduate.', 'Software Engineer.', 'FrontEnd Developer.', 'Backend Developer.'];
+const texts = ['Bachelor of Computer Science.', 'Software Engineer.', 'FrontEnd Developer.', 'Backend Developer.'];
 let textIndex = 0;
 let charIndex = 0;
 
