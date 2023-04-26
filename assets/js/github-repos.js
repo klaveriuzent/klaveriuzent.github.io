@@ -37,7 +37,7 @@ fetch("https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=7")
             }</p>
                 <div class="card-link">
                   <a href="${repo.html_url
-            }" class="button-mod">View on GitHub</a>
+            }" target="_blank" class="button-mod">View on GitHub</a>
                 </div>
               </div>
             </div>
@@ -81,7 +81,7 @@ fetch("https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=7")
                   }</p>
                       <div class="card-link">
                         <a href="${repo.html_url
-                  }" class="button-mod">View on GitHub</a>
+                  }" target="_blank" class="button-mod">View on GitHub</a>
                       </div>
                     </div>
                   </div>
