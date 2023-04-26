@@ -1,10 +1,13 @@
 // Mengambil data dari API GitHub
-fetch("https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=6")
+fetch("https://api.github.com/users/klaveriuzent/repos?sort=pushed&per_page=7")
   .then((response) => response.json())
   .then((data) => {
     // Menampilkan data dalam halaman web
     const repoList = document.getElementById("repo-list");
     data.forEach((repo) => {
+      if (repo.name === "klaveriuzent.github.io") {
+        return; // Skip repo with name "klaveriuzent.github.io"
+      }
       // Mengambil data bahasa dari API GitHub
       fetch(repo.languages_url)
         .then((response) => response.json())
