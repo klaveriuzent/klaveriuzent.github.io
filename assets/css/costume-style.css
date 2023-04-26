@@ -28,6 +28,24 @@
   text-align: right;
 }
 
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fork-label {
+  background-color: #49bf9d;
+  color: #fff;
+  padding: 0.2px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: 10px;
+  margin-top: -5px;
+}
+
 .repo-name {
   font-weight: 600;
 }
